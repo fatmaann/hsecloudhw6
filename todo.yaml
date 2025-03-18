@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: todo
+  labels:
+    app: todo
+spec:
+  containers:
+    - name: todo
+      image: todo:latest
+      imagePullPolicy: IfNotPresent
+      env:
+        - name: DATABASE_HOSTS
+          value: "postgres"
+        - name: DATABASE_URI
+          value: "postgresql://todo:todo@postgres:5432/todo?sslmode=disable"
+      ports:
+        - containerPort: 80
